@@ -11,9 +11,11 @@ function App() {
     async function fetchProduct() {
       try {
         const response = await fetch("https://fakestoreapi.com/products");
+
         if (!response.ok) {
           throw new Error(`Erreur HTTP ${response.status}`);
         }
+
         const data = await response.json();
         setProducts(data);
       } catch (e) {
@@ -41,16 +43,17 @@ function App() {
           category: "cosmetics",
         }),
       });
+
       if (!response.ok) {
         throw new Error(`Erreur HTTP ${response.status}`);
       }
+
       const data = await response.json();
       alert(`Le produit avec l'id ${data.id} a été créer.`);
       setProducts((prevProducts) => [...prevProducts, data]);
     } catch (e) {
-      setError(e);
-    } finally {
-      setLoading(false);
+      alert(e);
+      console.log(e);
     }
   }
 
@@ -70,12 +73,16 @@ function App() {
           category: "electronics",
         }),
       });
+
+      if (!response.ok) {
+        throw new Error(`Erreur HTTP ${response.status}`);
+      }
+
       const data = await response.json();
       alert(`Le produit avec l'id ${data.id} a été modifié`);
     } catch (e) {
-      setError(e);
-    } finally {
-      setLoading(false);
+      alert(e);
+      console.log(e);
     }
   }
 
@@ -90,15 +97,16 @@ function App() {
           price: 5,
         }),
       });
+
       if (!response.ok) {
         throw new Error(`Erreur HTTP ${response.status}`);
       }
+
       const data = await response.json();
       alert(`Le prix du produit avec l'id ${data.id} a été modifié.`);
     } catch (e) {
-      setError(e);
-    } finally {
-      setLoading(false);
+      alert(e);
+      console.log(e);
     }
   }
 
@@ -107,15 +115,16 @@ function App() {
       const response = await fetch(`https://fakestoreapi.com/products/${id}`, {
         method: "DELETE",
       });
+      
       if (!response.ok) {
         throw new Error(`Erreur HTTP ${response.status}`);
       }
+
       const data = await response.json();
       alert(`Le produit avec l'id ${data.id} a été supprimé.`);
     } catch (e) {
-      setError(e);
-    } finally {
-      setLoading(false);
+      alert(e);
+      console.log(e);
     }
   }
 
