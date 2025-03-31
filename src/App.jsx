@@ -53,6 +53,20 @@ function App() {
     alert(`Le produit avec l'id ${data.id} a été modifié`);
   }
 
+  async function updateProductPrice(id) {
+    const response = await fetch(`https://fakestoreapi.com/products/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        price: 5,
+      }),
+    });
+    const data = await response.json();
+    alert(`Le prix du produit avec l'id ${data.id} a été modifié.`);
+  }
+
   return (
     <Container className="mt-4">
       <Button className="mb-4" onClick={addProduct}>
@@ -67,8 +81,14 @@ function App() {
                 <Card.Title>{product.title}</Card.Title>
                 <Card.Text>{product.description}</Card.Text>
                 <Card.Text>{product.price}€</Card.Text>
-                <Button onClick={() => updateProduct(product.id)}>
+                <Button
+                  onClick={() => updateProduct(product.id)}
+                  className="mb-2"
+                >
                   Modifier le produit
+                </Button>
+                <Button onClick={() => updateProductPrice(product.id)}>
+                  Modifier le prix
                 </Button>
               </Card.Body>
             </Card>
