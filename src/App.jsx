@@ -19,7 +19,7 @@ function App() {
     <Container className="mt-4">
       <Row>
         {products.map((product) => (
-          <Col key={product.id} className="mb-4">
+          <Col key={product.id} className="mb-4" md={3}>
             <Card className="h-100">
               <Card.Img variant="top" src={product.image} fluid />
               <Card.Body>
