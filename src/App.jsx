@@ -34,6 +34,25 @@ function App() {
     setProducts((prevProducts) => [...prevProducts, data]);
   }
 
+  async function updateProduct(id) {
+    const response = await fetch(`https://fakestoreapi.com/products/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        title: "Produit mis à jour",
+        price: 49.99,
+        description: "Description mise à jour",
+        image:
+          "https://media.istockphoto.com/id/1402586283/fr/vectoriel/mettre-%C3%A0-jour-lic%C3%B4ne-du-logiciel-dans-un-style-plat-illustration-vectorielle-de.jpg?s=612x612&w=0&k=20&c=yMGlsorl-6GyFtMLPv8OIGU0G-Z9WLGnTd1GLNXT_Nc=",
+        category: "electronics",
+      }),
+    });
+    const data = await response.json();
+    alert(`Le produit avec l'id ${data.id} a été modifié`);
+  }
+
   return (
     <Container className="mt-4">
       <Button className="mb-4" onClick={addProduct}>
@@ -48,6 +67,9 @@ function App() {
                 <Card.Title>{product.title}</Card.Title>
                 <Card.Text>{product.description}</Card.Text>
                 <Card.Text>{product.price}€</Card.Text>
+                <Button onClick={() => updateProduct(product.id)}>
+                  Modifier le produit
+                </Button>
               </Card.Body>
             </Card>
           </Col>
