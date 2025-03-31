@@ -52,7 +52,7 @@ function App() {
       alert(`Le produit avec l'id ${data.id} a été créer.`);
       setProducts((prevProducts) => [...prevProducts, data]);
     } catch (e) {
-      alert(e);
+      alert(`Une erreur est survenue lors de l'ajout du produit`);
       console.log(e);
     }
   }
@@ -81,7 +81,7 @@ function App() {
       const data = await response.json();
       alert(`Le produit avec l'id ${data.id} a été modifié`);
     } catch (e) {
-      alert(e);
+      alert(`Une erreur est survenue lors de la modification du produit`);
       console.log(e);
     }
   }
@@ -105,7 +105,9 @@ function App() {
       const data = await response.json();
       alert(`Le prix du produit avec l'id ${data.id} a été modifié.`);
     } catch (e) {
-      alert(e);
+      alert(
+        `Une erreur est survenue lors de la mise à jour du prix du produit`
+      );
       console.log(e);
     }
   }
@@ -115,7 +117,7 @@ function App() {
       const response = await fetch(`https://fakestoreapi.com/products/${id}`, {
         method: "DELETE",
       });
-      
+
       if (!response.ok) {
         throw new Error(`Erreur HTTP ${response.status}`);
       }
@@ -123,7 +125,7 @@ function App() {
       const data = await response.json();
       alert(`Le produit avec l'id ${data.id} a été supprimé.`);
     } catch (e) {
-      alert(e);
+      alert(`Une erreur est survenue lors de la suppression du produit`);
       console.log(e);
     }
   }
