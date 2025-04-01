@@ -19,6 +19,7 @@ function App() {
         const data = await response.json();
         setProducts(data);
       } catch (e) {
+        console.log(e);
         setError(e);
       } finally {
         setLoading(false);
